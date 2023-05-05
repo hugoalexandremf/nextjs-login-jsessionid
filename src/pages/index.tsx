@@ -7,7 +7,9 @@ export default function Home() {
   async function testFetch() {
     const response = await fetchWS('/api/hello');
     if (response.httpResponseStatus === 200) {
+      console.log(response.responseData);
     } else {
+      console.log('error');
     }
   }
 
