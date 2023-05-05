@@ -5,9 +5,12 @@ type Data = {
   name: string
 }
 
-export default function handler(
-  req: NextApiRequest,
-  res: NextApiResponse<Data>
-) {
-  res.status(200).json({ name: 'John Doe' })
+export default function handler(req: NextApiRequest, res: NextApiResponse<Data>) {
+  if (req.method === 'GET') {
+    // Process a GET request
+    res.status(200).json({ name: 'John Doe' });
+  } else {
+    // Handle any other HTTP method
+    res.status(200).json({ name: 'John Doe' });
+  }
 }
