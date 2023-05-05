@@ -104,9 +104,17 @@ export const authOptions = {
               },
             });
 
-            console.log('introspection endpoint response:', introspectionEndpointResponse);
+            console.log('introspection endpoint response:', introspectionEndpointResponse.data);
 
             return introspectionEndpointResponse.data;
+            /* const userInfo = {
+              id: introspectionEndpointResponse.data.sub,
+              name: introspectionEndpointResponse.data.sub,
+              email: introspectionEndpointResponse.data.sub,
+              profile: 'test',
+            };
+
+            return userInfo; */
           } catch (err) {
             console.error(err);
             throw new Error(err);
@@ -116,20 +124,26 @@ export const authOptions = {
       profile(profile) {
         console.log('profile:', profile);
 
-        return {
+        /* return {
           ...profile,
           // name: 'test',
           name: profile.sub,
           // id: 'test@test.test',
           id: profile.sub,
-          //name: '${}'
+          // name: '${}'
+        }; */
+
+        return {
+          id: profile.sub,
+          name: profile.sub,
+          email: profile.sub,
         };
 
-        /*return {
+        /* return {
           ...profile,
           name: `${profile.given_name} ${profile.family_name}`,
           id: profile.email,
-        };*/
+        }; */
       },
     },
     // ...add more providers here
